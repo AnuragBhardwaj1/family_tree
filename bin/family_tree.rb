@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-
 require_relative "../lib/family_tree.rb"
 
 puts "fasdf"
@@ -49,6 +48,7 @@ puts "fasdf"
   f.connect "william", "susana", "father"
   f.connect "william", "hamnet", "father"
   f.connect "william", "judith", "father"
+  f.connect "hamnet", "anne hathaway", "son"
 
   f.connect "john hall", "  elizabeth", "father"
 
@@ -59,10 +59,10 @@ puts "fasdf"
   f.connect "gilbert", "mary arden", "son"
   f.connect "thomas quiney", "shakespeare", "father"
 
-  debugger
-  f.immidiate_children "john shakespeare"
-  debugger
-  f.all "john shakespeare"
-  debugger
-  f.immidiate_cousin "susana"
+  f.immidiate_son_count "william"
+  f.all_daughters_count "mary arden"
+  f.immidiate_cousin_count "susana"
+  f.wives "william"
+  f.related "anne hathaway", "thomas quiney"
+  f.related "gilbert", "joan"
   p '--------'

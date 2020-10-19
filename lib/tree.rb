@@ -35,6 +35,36 @@ class Tree
     end
   end
 
+  def immidiate_children member
+    node = find_node(member)
+    node.children.map { |child_node| child_node if child_node.primary }.compact
+  end
+
+  def bfs member
+    return [] unless member
+    queue, output = [],[]
+    queue.push find_node(member)
+
+    while(queue.size != 0)
+      node = queue.shift
+      output << node
+      node.children.each do |child_node|
+        queue.push(child_node)
+      end
+    end
+    output
+  end
+
+  def find_first member1, member2
+    queue = [root]
+    until queue.empty?
+      current_node = queue.shift
+      return [member1, current_node] if current_node.members.include?(member1)
+      return [member2, current_node] if current_node.members.include?(member2)
+      queue.push(*current_node.children) if !current_node.children.empty?
+    end
+  end
+
   private
     def initialize
       self.relations = [RelationTypes::Father.new, RelationTypes::Son.new]

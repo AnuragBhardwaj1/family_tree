@@ -5,7 +5,6 @@ module RelationTypes
   class Father < RelationType
 
     def eligible?
-      
     end
 
     def actions
