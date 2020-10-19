@@ -36,6 +36,7 @@ puts "fasdf"
   f.add_relationship "son"
 # ----------------------------------
 
+  # John Shakespeare is father of Joan
   f.connect "john shakespeare", "joan", "father"
   f.connect "john shakespeare", "margaret", "father"
   f.connect "john shakespeare", "william", "father"
@@ -52,6 +53,7 @@ puts "fasdf"
 
   f.connect "john hall", "  elizabeth", "father"
 
+  # shakespeare the II is son of Judith.
   f.connect "shakespeare", "judith", "son"
   f.connect "richard2", "judith", "son"
   f.connect "thomas", "judith", "son"
@@ -59,10 +61,30 @@ puts "fasdf"
   f.connect "gilbert", "mary arden", "son"
   f.connect "thomas quiney", "shakespeare", "father"
 
+  # --------------Part I queries ------------
   f.immidiate_son_count "william"
   f.all_daughters_count "mary arden"
   f.immidiate_cousin_count "susana"
   f.wives "william"
   f.related "anne hathaway", "thomas quiney"
   f.related "gilbert", "joan"
-  p '--------'
+
+
+
+# ---------------------------------------------
+# ------------------ Part II ------------------
+
+
+member = f.send :member, "william"
+william = f.tree.find_node member
+
+william.children.sample.primary.make_lawyer
+william.children.sample.primary.make_doctor
+william.children.sample.primary.make_student("c1", 2014)
+william.children.sample.primary.make_student("c2", 2015)
+william.children.sample.primary.make_student("c3", 2016)
+
+
+f.student? "joan"
+f.students_are_lawyers
+

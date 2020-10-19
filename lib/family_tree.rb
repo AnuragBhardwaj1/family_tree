@@ -76,8 +76,10 @@ class FamilyTree
   end
 
   def students_are_lawyers
-    members.select { |member| member_name.student? && member_name.lawyer?}
+    members.select { |member| member.student? && member.lawyer?}
   end
+
+  
 
   def immidiate_children member_name, gender=nil
     member = member(member_name)

@@ -1,0 +1,2 @@
+class Profession
+end
